@@ -10,8 +10,8 @@ class Customer(models.Model):
     address = models.CharField(max_length=55)
     city =  models.CharField(max_length=55)
     state = models.CharField(max_length=55)
-    zipcode = models.IntegerField(max_length=5,)
-    userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING, related_name="type")
+    zipcode = models.IntegerField()
+    userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING, related_name="category")
 
     # @property
     # def full_name(self):
