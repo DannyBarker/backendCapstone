@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Capstone</title>
+
+    {% comment %} <link rel="stylesheet" href="{% static 'styles/base.css' %}" /> {% endcomment %}
+
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <nav id="site-nav">
+        <ol class="navList">
+            <li class="navList__route"><a href="{% url 'capstone:home' %}">Home</a></li>
+            <li class="navList__route"><a href="{% url 'capstone:login' %}">Log In</a></li>
+            <li class="navList__route"><a href="{% url 'capstone:logout' %}">Logout</a></li>
+            <li class="navList__route"><a href="{% url 'capstone:register' %}">Register</a></li>
+        </ol>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>
