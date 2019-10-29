@@ -2,7 +2,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from ..connection import Connection
 from capstone.models import Payment
 from capstone.models import GiftCard
 from capstone.models import Customer
@@ -15,6 +14,7 @@ import datetime
 def Donation_List(request):
     user = request.user
     current_customer = Customer.objects.get(pk=user.id)
+    
     if request.method == 'GET':
         try:
             user_donations = current_customer.donations.all()
@@ -27,18 +27,31 @@ def Donation_List(request):
 
     elif request.method == 'POST':
         form_data = request.POST
+        companies = Company.objects.all()
+        company_name = companies.get(pk=form_data["company_card_name"])
+
         try:
             new_card = GiftCard.objects.get(company__id=form_data["company_card_name"], barcode=form_data["barcode"])
+            if new_card.remaining_balance > 0.00:
+                new_payment = Payment.objects.create(
+                payment_date=datetime.date.today(),
+                customer=current_customer,
+                giftcard=new_card,
+                discription=form_data['description'],
+                amount_donated=new_card.remaining_balance
+                )
+                new_card.remaining_balance = new_card.remaining_balance - new_payment.amount_donated
+                new_card.save()
 
-            new_payment = Payment.objects.create(
-            payment_date=datetime.date.today(),
-            customer=current_customer,
-            giftcard=new_card,
-            discription=form_data['description'],
-            )
-            return redirect(reverse('capstone:donations'))
+                return redirect(reverse('capstone:donations'))
+
+            else:
+                messages.info(request, f"The {company_name.name} card has no remaining balance to give!")
+
+                return render(request, "donations/form.html",{"form": form_data, "all_companies": companies})
+
         except GiftCard.DoesNotExist:
-            companies = Company.objects.all()
             company_name = companies.get(pk=form_data["company_card_name"])
-            messages.info(request, f"Could not find that card for {company_name.name}!")
+            messages.info(request, f"Could not find the {company_name.name} card!")
+
             return render(request, "donations/form.html",{"form": form_data, "all_companies": companies})

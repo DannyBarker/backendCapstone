@@ -8,6 +8,7 @@ class Payment(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name="donations")
     giftcard = models.OneToOneField(GiftCard, on_delete=models.DO_NOTHING,)
     payment_date = models.DateField(default="0000-00-00",)
+    amount_donated = models.FloatField(validators=[MinValueValidator(0.00)], default = "0.00")
     discription = models.CharField(max_length=200, default="I donated!")
 
     class Meta:
