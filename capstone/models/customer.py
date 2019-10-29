@@ -6,7 +6,7 @@ from .company import Company
 
 class Customer(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING,)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name="user_customer")
     phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=55)
     city =  models.CharField(max_length=55)
