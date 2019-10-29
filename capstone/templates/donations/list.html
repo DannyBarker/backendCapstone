@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Donations</h1>
+
+    <ol class="user_donations_list">
+    {% for donation in all_donations %}
+        <li class="book">
+          {{ donation.giftcard.company.name }}
+            <div class="donation__amount">
+                $ {{donation.giftcard.remaining_balance}}
+            </div>
+            <button id="detail--{{ donation.id }}">Details</button>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
