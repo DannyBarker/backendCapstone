@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .userType import UserType
+from .company import Company
 
 
 class Customer(models.Model):
@@ -12,6 +13,7 @@ class Customer(models.Model):
     state = models.CharField(max_length=55)
     zipcode = models.IntegerField()
     userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING, related_name="category")
+    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, related_name="company_user", default=None, blank=True, null=True)
 
     # @property
     # def full_name(self):
