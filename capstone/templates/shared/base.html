@@ -13,23 +13,27 @@
 </head>
 
 <body>
+  <nav id="site-nav">
+    <ol class="navList">
+      <li class="navList__route"><a href="{% url 'capstone:home' %}">Home</a></li>
+      {% if user.is_authenticated %}
+        <li class="navList__route"><a href="{% url 'capstone:logout' %}">Logout</a></li>
+        <li class="navList__route"><a href="{% url 'capstone:donations' %}">Past Donations</a></li>
+        <li class="navList__route"><a href="{% url 'capstone:donation_form' %}">Donate</a></li>
+      {% else %}
+        <li class="navList__route"><a href="{% url 'capstone:login' %}">Log In</a></li>
+        <li class="navList__route"><a href="{% url 'capstone:register' %}">Register</a></li>
+      {% endif %}
+    </ol>
+  </nav>
 
-    <nav id="site-nav">
-        <ol class="navList">
-            <li class="navList__route"><a href="{% url 'capstone:home' %}">Home</a></li>
-            <li class="navList__route"><a href="{% url 'capstone:login' %}">Log In</a></li>
-            <li class="navList__route"><a href="{% url 'capstone:logout' %}">Logout</a></li>
-            <li class="navList__route"><a href="{% url 'capstone:register' %}">Register</a></li>
-        </ol>
-    </nav>
-
-    <main class="main-content">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    {% block scripts %}
+  <main class="main-content">
+    {% block content %}
     {% endblock %}
+  </main>
+
+  {% block scripts %}
+  {% endblock %}
 </body>
 
 </html>

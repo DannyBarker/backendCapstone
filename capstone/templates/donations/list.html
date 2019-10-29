@@ -1,0 +1,22 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Donations</h1>
+
+    {% if all_donations|length > 0 %}
+      <ol class="user_donations_list">
+      {% for donation in all_donations %}
+        <li class="book">
+          {{ donation.giftcard.company.name }}
+            <div class="donation__amount">
+              $ {{ donation.amount_donated }}
+            </div>
+            <a href="{% url 'capstone:donation' donation.id %}"><button id="detail-{{ donation.id }}">Details</button></a>
+        </li>
+      {% endfor %}
+      </ol>
+    {% else %}
+      <div>You have not made any donations. Make some <a href="{% url 'capstone:donation_form' %}">here</a>!</div>
+    {% endif %}
+{% endblock %}

@@ -1,4 +1,3 @@
-from .modelFactory import model_factory
 from .customer import Customer
 from .company import Company
 from .userType import UserType

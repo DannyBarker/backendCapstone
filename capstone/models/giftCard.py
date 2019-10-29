@@ -11,7 +11,6 @@ class GiftCard(models.Model):
     initial_balance = models.FloatField(validators=[MinValueValidator(0.00)],)
     remaining_balance = models.FloatField(validators=[MinValueValidator(0.00)],)
 
-
     class Meta:
         verbose_name = ("giftcard")
         verbose_name_plural = ("giftcards")
