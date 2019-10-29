@@ -14,7 +14,7 @@ import datetime
 def Donation_List(request):
     user = request.user
     current_customer = Customer.objects.get(pk=user.id)
-    
+
     if request.method == 'GET':
         try:
             user_donations = current_customer.donations.all()
@@ -32,24 +32,23 @@ def Donation_List(request):
 
         try:
             new_card = GiftCard.objects.get(company__id=form_data["company_card_name"], barcode=form_data["barcode"])
+
             if new_card.remaining_balance > 0.00:
                 new_payment = Payment.objects.create(
                 payment_date=datetime.date.today(),
                 customer=current_customer,
                 giftcard=new_card,
-                discription=form_data['description'],
+                description=form_data['description'],
                 amount_donated=new_card.remaining_balance
                 )
                 new_card.remaining_balance = new_card.remaining_balance - new_payment.amount_donated
                 new_card.save()
 
                 return redirect(reverse('capstone:donations'))
-
             else:
                 messages.info(request, f"The {company_name.name} card has no remaining balance to give!")
 
                 return render(request, "donations/form.html",{"form": form_data, "all_companies": companies})
-
         except GiftCard.DoesNotExist:
             company_name = companies.get(pk=form_data["company_card_name"])
             messages.info(request, f"Could not find the {company_name.name} card!")

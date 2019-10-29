@@ -10,9 +10,9 @@
         <li class="book">
           {{ donation.giftcard.company.name }}
             <div class="donation__amount">
-              $ {{donation.amount_donated}}
+              $ {{ donation.amount_donated }}
             </div>
-            <button id="detail--{{ donation.id }}">Details</button>
+            <a href="{% url 'capstone:donation' donation.id %}"><button id="detail-{{ donation.id }}">Details</button></a>
         </li>
       {% endfor %}
       </ol>

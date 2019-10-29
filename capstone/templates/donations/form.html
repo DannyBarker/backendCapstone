@@ -1,44 +1,51 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>Donate Form</h1>
-    {% if messages %}
-    {% for message in messages %}
-      <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
 
-    {% if payment.id is not None %}
-        {% comment %} <form action="{% url 'capstone:donation_details' payment.id %}" method="post"> {% endcomment %}
-        <form action="{% url 'capstone:donations' %}" method="post">
-    {% else %}
-        <form action="{% url 'capstone:donations' %}" method="post">
-        <fieldset>
-            <label for="barcode">Barcode: </label>
-            <input id="barcode" type="text" name="barcode" placeholder="Barcode" value="{{form.barcode}}">
-        </fieldset>
-        <fieldset>
-            <label for="company_card_name">Company: </label>
-            <select id="company_card_name" type="text" name="company_card_name">
-                {% for company in all_companies %}
-                <option {% if form.company_card_name == company.id %}selected{% endif %} value="{{ company.id }}">
-                    {{ company.name }}</option>
-                {% endfor %}
-            </select>
-        </fieldset>
-    {% endif %}
-        {% csrf_token %}
-        <fieldset>
-            <label for="description">Description: </label>
-            <textarea id="description" type="text" name="description" placeholder="Why are you Donating?" >{{form.description}}</textarea>
-        </fieldset>
+  {% if form.id is not None %}
+    <h1>Edit Description</h1>
 
-        {% if payment.id is not None %}
-            <input type="hidden" name="actual_method" value="PUT">
-            <input type="submit" value="Update" />
-        {% else %}
-            <input type="submit" value="Create" />
+    <form action="{% url 'capstone:donation' form.id %}" method="post">
+  {% else %}
+        <h1>Donate Form</h1>
+
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
         {% endif %}
+
+    <form action="{% url 'capstone:donations' %}" method="post">
+      <fieldset>
+        <label for="barcode">Barcode: </label>
+        <input id="barcode" type="text" name="barcode" placeholder="Barcode" value="{{form.barcode}}">
+      </fieldset>
+      <fieldset>
+        <label for="company_card_name">Company: </label>
+        <select id="company_card_name" type="text" name="company_card_name">
+
+          {% for company in all_companies %}
+          <option {% if form.company_card_name == company.id|slugify %} selected {% endif %} value="{{ company.id }}">
+            {{ company.name }}</option>
+          {% endfor %}
+
+        </select>
+      </fieldset>
+  {% endif %}
+
+      {% csrf_token %}
+
+      <fieldset>
+        <label for="description">Description: </label>
+        <textarea id="description" type="text" name="description" placeholder="Why are you Donating?" >{{form.description}}</textarea>
+      </fieldset>
+
+      {% if form.id is not None %}
+        <input type="hidden" name="actual_method" value="PUT">
+        <input type="submit" value="Update" />
+      {% else %}
+        <input type="submit" value="Create" />
+      {% endif %}
 
     </form>
 
