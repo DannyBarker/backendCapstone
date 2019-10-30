@@ -38,9 +38,12 @@ def Donation_List(request):
                 payment_date=datetime.date.today(),
                 customer=current_customer,
                 giftcard=new_card,
-                description=form_data['description'],
                 amount_donated=new_card.remaining_balance
                 )
+                if form_data["description"] != "":
+                    new_card.description = form_data["description"]
+                    new_card.save()
+
                 new_card.remaining_balance = new_card.remaining_balance - new_payment.amount_donated
                 new_card.save()
 

@@ -19,7 +19,12 @@ def Donation_Details(request, donation_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "PUT"
         ):
-            donation.description = form_data["description"]
+            if form_data["description"] != "":
+                donation.description = form_data["description"]
+            else:
+                donation.description = "I donated!"
+
+
             donation.save()
 
             return redirect(reverse('capstone:donations'))

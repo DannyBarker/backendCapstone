@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+  <h1>${{ total }} Donated <br> <font size="3">From {{ payments|length }} card{% if payments|length != 1 %}s{% endif %}</font></h1>
+
+  <section id="report-details-section">
+    <h3>Amount by Area:</h3>
+    {% for key,value in zipcodes.items %}
+
+      <div>{{ key }}: ${{ value }}</div>
+
+    {% endfor %}
+
+  </section>
+  <iframe src="{% url 'capstone:map' company_id %}" width="70%%" height="500"></iframe>
+
+{% endblock %}

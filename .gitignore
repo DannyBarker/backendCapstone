@@ -34,3 +34,5 @@ README.md
 
 #db location
 capstone/views/connection.py
+
+capstone/templates/report/gift_cards.html
