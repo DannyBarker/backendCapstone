@@ -20,6 +20,7 @@ def make_report(company_id):
         overall_report["total"] += v
 
     overall_report["zipcodes"] = company_area_report
+    overall_report["company_id"] = company_id
 
     return overall_report
 
