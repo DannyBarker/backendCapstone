@@ -1,0 +1,13 @@
+.donate_style {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 35%;
+  padding-bottom: 35%;
+}
+
+.login_button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

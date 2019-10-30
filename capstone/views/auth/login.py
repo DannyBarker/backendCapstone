@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 def login_user(request):
     if request.method == "GET":
-        template_name = 'auth/login.html'
+        template_name = 'donations/form.html'
         return render(request, template_name, {})
 
     elif request.method == "POST":
@@ -15,7 +15,7 @@ def login_user(request):
         # If authentication was successful, log the user in
         if authenticated_user is not None:
             login(request=request, user=authenticated_user)
-            return redirect(reverse('capstone:home'))
+            return redirect(reverse('capstone:donation_form'))
 
         else:
             # Bad login details were provided. So we can't log the user in.
