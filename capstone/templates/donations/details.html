@@ -10,7 +10,7 @@
 
       <section class="donation-details-section">
         <br>
-        <div>Amount: ${{ donation.amount_donated }}</div>
+        <div>Amount: ${{ donation.amount_donated|floatformat:2 }}</div>
         <br>
         <div>Card: {{ donation.giftcard.barcode|slice:'1' }}***{{ donation.giftcard.barcode|slice:'9:14' }}</div>
         <br>

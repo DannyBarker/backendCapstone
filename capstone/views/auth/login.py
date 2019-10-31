@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
+from django.contrib import messages
 
 def login_user(request):
     if request.method == "GET":
@@ -19,5 +20,6 @@ def login_user(request):
 
         else:
             # Bad login details were provided. So we can't log the user in.
-            print("Invalid login details: {}, {}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            # print("Invalid login details: {}, {}".format(form_data['username'], password=form_data['password']))
+            messages.info(request, "Invalid login details supplied.")
+            return HttpResponse(status=204)

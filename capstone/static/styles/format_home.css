@@ -23,3 +23,21 @@ section.donation-details-section div, section.donation-details-section h2{
   flex-flow: row wrap;
   justify-content: center;
 }
+
+form{
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+form div div{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+input, textarea{
+  text-align: center;
+}
+
+select{
+  text-align-last: center;
+}

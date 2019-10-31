@@ -91,44 +91,44 @@
 										<div class="fields">
 											<div class="field">
 												<label for="username">Username: </label>
-                        <input id="new_username" type="text" name="username" autocomplete="username" placeholder="Username">
+                        <input id="new_username" type="text" name="username" autocomplete="username" placeholder="Username" required>
 											</div>
 											<div class="field half">
 												<label for="first_name">First Name: </label>
-                        <input id="first_name" type="text" name="first_name" placeholder="First Name">
+                        <input id="first_name" type="text" name="first_name" placeholder="First Name" required>
 											</div>
 											<div class="field half">
 												<label for="last_name">Last Name: </label>
-                        <input id="last_name" type="text" name="last_name" placeholder="Last Name">
+                        <input id="last_name" type="text" name="last_name" placeholder="Last Name" required>
 											</div>
 											<div class="field half">
 												<label for="phone_number">Phone Number: </label>
-                        <input id="phone_number" type="text" name="phone_number" placeholder="Phone Number">
+                        <input id="phone_number" type="text" name="phone_number" placeholder="Phone Number" required>
 											</div>
 											<div class="field half">
 												<label for="email">Email: </label>
-                        <input id="email" type="text" name="email" autocomplete="username" placeholder="jon@email.com">
+                        <input id="email" type="text" name="email" autocomplete="username" placeholder="jon@email.com" required>
 											</div>
 											<div class="field">
 												<label for="address">Address: </label>
-                        <input id="address" type="text" name="address" placeholder="address">
+                        <input id="address" type="text" name="address" placeholder="Address" required>
 											</div>
 											<div class="field">
 												<label for="city">City: </label>
-                        <input id="city" type="text" name="city" placeholder="City">
+                        <input id="city" type="text" name="city" placeholder="City" required>
 											</div>
 											<div class="field half">
 												<label for="state">State: </label>
-                        <input id="state" type="text" name="state" placeholder="TN">
+                        <input id="state" type="text" name="state" placeholder="TN" required>
 											</div>
 											<div class="field half">
 												<label for="zipcode">Zipcode: </label>
-                        <input id="zipcode" type="text" name="zipcode" placeholder="37027">
+                        <input id="zipcode" type="text" name="zipcode" maxlength="5" placeholder="37027" required>
 											</div>
 											<input id="userType" type="hidden" name="userType" value="1">
 											<div class="field">
 												<label for="password">Password: </label>
-                        <input id="new_password" type="password" autocomplete="current-password" name="password" placeholder="Password">
+                        <input id="new_password" type="password" autocomplete="current-password" name="password" placeholder="Password" required>
 											</div>
                       <div class="field login_button">
                         <input type="submit" value="Register" />
@@ -138,16 +138,21 @@
 								</section>
                 <section>
                 <h2>Login</h2>
+                {% if messages %}
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
                 <form method="post" action="{% url 'capstone:login' %}">
                   {% csrf_token %}
                   <div class="fields">
                     <div class="field">
                       <label for="username">Username: </label>
-                      <input id="username" type="text" name="username" autocomplete="username" placeholder="Username">
+                      <input id="username" type="text" name="username" autocomplete="username" placeholder="Username" required>
                     </div>
                     <div class="field">
                       <label for="password">Password: </label>
-                      <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Password">
+                      <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Password" required>
                     </div>
                     <div class="field login_button">
                       <input type="submit" value="Log In" />

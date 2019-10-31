@@ -2,13 +2,13 @@
 
 {% block content %}
 
-  <h1>${{ total }} Donated <br> <font size="3">From {{ payments|length }} card{% if payments|length != 1 %}s{% endif %}</font></h1>
+  <h2>${{ total|floatformat:2 }} Donated <br> <font size="3">From {{ payments|length }} card{% if payments|length != 1 %}s{% endif %}</font></h2>
 
   <section id="report-details-section">
     <h3>Amount by Area:</h3>
     {% for key,value in zipcodes.items %}
 
-      <div>{{ key }}: ${{ value }}</div>
+      <div>{{ key }}: ${{ value|floatformat:2 }}</div>
 
     {% endfor %}
 

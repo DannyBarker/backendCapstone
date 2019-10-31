@@ -22,16 +22,16 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: space-between;
-      -ms-flex-pack: space-between;
-          justify-content: space-between;
+  -webkit-box-pack: space-around;
+      -ms-flex-pack: space-around;
+          justify-content: space-around;
   -ms-flex-direction: row;
       flex-direction: row;
 
 }
 
 .col_card{
-  width: calc(25% - 2rem);
+  width: calc(calc(40% - 2rem));
   margin: 1rem;
   cursor: pointer;
 }
@@ -170,19 +170,19 @@
 
 @media screen and (max-width: 64rem){
   .col_card{
-    width: calc(33.333333% - 2rem);
+    width: calc(55% - 1rem);
   }
 }
 
 @media screen and (max-width: 48rem){
   .col_card{
-    width: calc(50% - 2rem);
+    width: calc(67% - 1rem);
   }
 }
 
 @media screen and (max-width: 32rem){
   .col_card{
-    width: 100%;
+    width: calc(66% - 1rem);
     margin: 0 0 2rem 0;
   }
 }

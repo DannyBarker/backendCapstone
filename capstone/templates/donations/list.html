@@ -9,6 +9,7 @@
     <h1>Donations</h1>
 
     {% if all_donations|length > 0 %}
+    <p>{{user}}, you have donated ${{total_donated|floatformat:2}} so far!</p>
 
         <div class="donation_card_list">
         <div class="wrapper_card">
@@ -24,7 +25,7 @@
               </div>
             <div class="back_card">
               <div class="inner_card">
-                <p>Amount: $ {{ donation.amount_donated }} </p>
+                <p>Amount: $ {{ donation.amount_donated|floatformat:2 }} </p>
 								<p class="login_button"><a href="{% url 'capstone:donation' donation.id %}" class="button">Details</a></p>
               </div>
             </div>
@@ -34,6 +35,6 @@
 			  </div>
       </div>
     {% else %}
-      <div>You have not made any donations. Make some <a href="{% url 'capstone:donation_form' %}">here</a>!</div>
+      <div>You have not made any donations. Make some <a href="{% url 'capstone:donation_form' %}" class="button">here!</a></div>
     {% endif %}
 {% endblock %}

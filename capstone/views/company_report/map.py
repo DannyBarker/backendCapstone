@@ -41,7 +41,7 @@ def create_map(id_for_map):
 
     mc = MarkerCluster()
     for idx,row in latt_long_df.iterrows():
-        mc.add_child(folium.Marker(location=[row.latitude,  row.longitude], popup=f"{row.zipcode}: ${str(row.amount_donated)}"))
+        mc.add_child(folium.Marker(location=[row.latitude,  row.longitude], popup=f"{row.zipcode}: ${str(round(float(row.amount_donated), 2))}"))
 
     base_map.add_child(mc)
 
