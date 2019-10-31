@@ -1,21 +1,38 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
 
+{% block css %}
+<link rel="stylesheet" href="../static/styles/donation_card.css" />
+{% endblock %}
+
 {% block content %}
     <h1>Donations</h1>
 
     {% if all_donations|length > 0 %}
-      <ol class="user_donations_list">
+
+        <div class="donation_card_list">
+        <div class="wrapper_card">
       {% for donation in all_donations %}
-        <li class="book">
-          {{ donation.giftcard.company.name }}
-            <div class="donation__amount">
-              $ {{ donation.amount_donated }}
+        <div class="cols_card">
+          <div class="col_card" ontouchstart="this.classList.toggle('hover');">
+            <div class="container_card">
+              <div class="front_card">
+                <div class="inner_card">
+                  <p>{{ donation.giftcard.company.name }}</p>
+                  <p><font size="5">{{ donation.payment_date }}</font></p>
+                </div>
+              </div>
+            <div class="back_card">
+              <div class="inner_card">
+                <p>Amount: $ {{ donation.amount_donated }} </p>
+								<p class="login_button"><a href="{% url 'capstone:donation' donation.id %}" class="button">Details</a></p>
+              </div>
             </div>
-            <a href="{% url 'capstone:donation' donation.id %}"><button id="detail-{{ donation.id }}">Details</button></a>
-        </li>
+          </div>
+      </div>
+			  </div>
       {% endfor %}
-      </ol>
+      </div>
     {% else %}
       <div>You have not made any donations. Make some <a href="{% url 'capstone:donation_form' %}">here</a>!</div>
     {% endif %}

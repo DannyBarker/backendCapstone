@@ -43,6 +43,7 @@
         <label for="description">Description: </label>
         <textarea id="description" type="text" name="description" placeholder="Why are you Donating?" >{{form.description}}</textarea>
       </div>
+    </div>
 
       {% if form.id is not None %}
         <input type="hidden" name="actual_method" value="PUT">
