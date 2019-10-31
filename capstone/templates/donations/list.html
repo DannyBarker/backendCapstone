@@ -12,9 +12,9 @@
 
         <div class="donation_card_list">
         <div class="wrapper_card">
-      {% for donation in all_donations %}
         <div class="cols_card">
-          <div class="col_card" ontouchstart="this.classList.toggle('hover');">
+      {% for donation in all_donations %}
+          <div class="col_card" onpassive="this.classList.toggle('hover');">
             <div class="container_card">
               <div class="front_card">
                 <div class="inner_card">
@@ -30,8 +30,8 @@
             </div>
           </div>
       </div>
-			  </div>
       {% endfor %}
+			  </div>
       </div>
     {% else %}
       <div>You have not made any donations. Make some <a href="{% url 'capstone:donation_form' %}">here</a>!</div>

@@ -22,9 +22,12 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-between;
+      -ms-flex-pack: space-between;
+          justify-content: space-between;
+  -ms-flex-direction: row;
+      flex-direction: row;
+
 }
 
 .col_card{
@@ -61,9 +64,9 @@
 
 .back_card{
   background: #cedce7;
-  background: -webkit-linear-gradient(45deg,  #728188 0%,#312450 100%);
-  background: -o-linear-gradient(45deg,  #728188 0%,#312450 100%);
-  background: linear-gradient(45deg,  #728188 0%,#312450 100%);
+  background: -webkit-linear-gradient(45deg,  #3e4094 0%,#312450  100%);
+  background: -o-linear-gradient(45deg,  #3e4094 0%,#312450  100%);
+  background: linear-gradient(45deg,  #3e4094 0%,#312450  100%);
 }
 
 .front_card:after{
@@ -75,7 +78,7 @@
     height: 100%;
     content: '';
     display: block;
-    background-color: #000;
+    background-color: #3e4094;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     border-radius: 10px;
