@@ -2,12 +2,12 @@
 
 {% block content %}
 
-  <section>
 
   {% if form.id is not None %}
     <h2>Edit Description</h2>
 
     <form action="{% url 'capstone:donation' form.id %}" method="post">
+    {% csrf_token %}
     <div class="fields">
   {% else %}
         <h2>Donate Form</h2>
@@ -19,8 +19,9 @@
         {% endif %}
 
     <form action="{% url 'capstone:donations' %}" method="post">
+    {% csrf_token %}
     <div class="fields">
-      <div class="field">
+       <div class="field">
         <label for="barcode">Barcode: </label>
         <input id="barcode" type="text" name="barcode" placeholder="Barcode" value="{{form.barcode}}">
       </div>
@@ -36,8 +37,6 @@
         </select>
       </div>
   {% endif %}
-
-      {% csrf_token %}
 
       <div class="field">
         <label for="description">Description: </label>
@@ -57,6 +56,5 @@
       {% endif %}
 
     </form>
-  </section>
 
 {% endblock %}
