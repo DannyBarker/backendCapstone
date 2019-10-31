@@ -16,14 +16,18 @@ def Donation_List(request):
     current_customer = Customer.objects.get(pk=user.id)
 
     if request.method == 'GET':
+        total_donated = 0
+
         try:
             user_donations = current_customer.donations.all()
         except Payment.DoesNotExist:
             user_donations = []
 
+        for donation in user_donations:
+            total_donated += float(donation.amount_donated)
 
         template_name = "donations/list.html"
-        return render(request, template_name, {'all_donations': user_donations})
+        return render(request, template_name, {'all_donations': user_donations, "total_donated": total_donated, "user": user.first_name})
 
     elif request.method == 'POST':
         form_data = request.POST
