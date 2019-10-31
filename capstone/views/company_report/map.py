@@ -6,6 +6,7 @@ import sqlite3 as sql
 import folium
 from folium import plugins
 from folium.plugins import MarkerCluster
+from capstone.models import Customer
 
 def create_map(id_for_map):
     conn = sql.connect("db.sqlite3")
@@ -40,7 +41,7 @@ def create_map(id_for_map):
 
     mc = MarkerCluster()
     for idx,row in latt_long_df.iterrows():
-        mc.add_child(folium.Marker(location=[row.latitude,  row.longitude], popup=f"${str(row.amount_donated)}"))
+        mc.add_child(folium.Marker(location=[row.latitude,  row.longitude], popup=f"{row.zipcode}: ${str(row.amount_donated)}"))
 
     base_map.add_child(mc)
 
@@ -49,8 +50,9 @@ def create_map(id_for_map):
 
 
 @login_required
-def Map(request, company_id):
-    create_map(company_id)
+def Map(request):
+    customer = Customer.objects.get(pk=request.user.id)
+    create_map(customer.company.id)
     if request.method == 'GET':
         template_name = 'report/gift_cards.html'
         return render(request, template_name, {})

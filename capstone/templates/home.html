@@ -44,13 +44,13 @@
               <div class="content">
 								<div class="inner">
 									<h2>Donate</h2>
-									<p>Donate your unwanted and used giftcards to charity!</p>
                   {% if user.is_authenticated %}
+									<p>Donate your unwanted and used giftcards to charity!</p>
 									<ul class="actions">
 										<li><a href="{% url 'capstone:donation_form' %}" class="button">Donate</a></li>
 									</ul>
                   {% else %}
-                  <p><a href="#three">Log In</a> or <a href="#three">Register</a> to donate!</p>
+                  <p><a href="#three" class="button">Log In</a> or <a href="#three" class="button">Register</a> to donate!</p>
                   {% endif %}
 								</div>
 							</div>

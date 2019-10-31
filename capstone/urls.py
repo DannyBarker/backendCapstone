@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^donations/(?P<donation_id>[0-9]+)$', Donation_Details, name="donation"),
 
     url(r'^report/$', Report_Details, name="report"),
-    url(r'^map/(?P<company_id>[0-9]+)$', Map, name="map"),
+    url(r'^map/$', Map, name="map"),
 
     url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'^login/$', login_user, name='login'),
